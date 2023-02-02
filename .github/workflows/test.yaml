@@ -20,6 +20,7 @@ jobs:
         source /opt/ros/melodic/setup.bash
         mkdir -p ${CATKIN_WS}/src && cd ${CATKIN_WS} && catkin_make
         ln -s ${GITHUB_WORKSPACE} ${CATKIN_WS}/src/
+        bash -xve ./test/githubaction_package_make.bash
         catkin_make
         source ~/.bashrc
 
@@ -27,4 +28,4 @@ jobs:
       run: |
         source ${CATKIN_WS}/devel/setup.bash
         bash -xve ./test/travis_prepare_dummy_files.bash
-        rostest pimouse_run_corridor wall_stop.launch
+        rostest pimouse_ros test.launch
