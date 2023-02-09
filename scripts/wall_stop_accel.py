@@ -19,11 +19,13 @@ class WallStop():
         data = Twist()
 
         accel = 0.02
-        data.linier.x = 0.0
+        data.linear.x = 0.0
         while not rospy.is_shutdown():
-            if self.sensor_values.sum_all >= 50: data.linier.x = 0.0
-            elif data.linier.x <= 0.2:           data.linear.x = 0.2 
-            elif data.linier.x >= 0.8:           data.liniar.x = 0.8
+            data.linear.x += accel
+
+            if self.sensor_values.sum_all >= 50: data.linear.x = 0.0
+            elif data.linear.x <= 0.2:           data.linear.x = 0.2 
+            elif data.linear.x >= 0.8:           data.linear.x = 0.8
 
             self.cmd_vel.publish(data)
             rate.sleep()
