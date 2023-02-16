@@ -28,7 +28,7 @@ class WallTraceTest(unittest.TestCase):
         self.assertTrue(left < right, "don't curve to left")
 
         left, right = self.set_and_get(0,200,0,0) #tcueve to right
-        self.assertTrue(left < right, "don't curve right")
+        self.assertTrue(left > right, "don't curve right")
 
         left, right = self.set_and_get(0,5,0,0) #don't control when far from a wall
         self.assertTrue(left == right, "curve wrongly")
